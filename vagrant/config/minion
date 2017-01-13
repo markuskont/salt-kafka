@@ -1,0 +1,7 @@
+master: salt
+mine_interval: 1
+environment: DEVEL
+
+grains:
+  roles:
+   - kafka
