@@ -1,0 +1,3 @@
+DEVEL:
+  'roles:kafka':
+    - kafka
