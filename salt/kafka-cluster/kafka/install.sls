@@ -27,16 +27,15 @@ kafka-cluster.directories:
 
 kafka-cluster.install-kafka-dist:
   file.managed:
-    - name: {{vars.home}}/kafka-{{ vars.scala_version }}-{{vars.version}}.tgz
-    - source: http://www-us.apache.org/dist/kafka/{{vars.version}}/kafka_{{ vars.scala_version }}-{{ vars.version }}.tgz
+    - name: {{vars.home}}/kafka-{{ vars.scala_version }}-{{ vars.version }}.tgz
+    - source: http://www-us.apache.org/dist/kafka/{{ vars.version }}/kafka_{{ vars.scala_version }}-{{ vars.version }}.tgz
     - source_hash: md5={{ vars.source_hash }}
     - require:
       - file: {{ vars.home }}
-
-#set-kafka-package:
-#  cmd.run:
-#    - name: tar -xzf kafka-{{vars['version']}}.tgz -C {{vars['home']}}
-#    - creates: {{vars['home']}}/kafka-2.11-{{vars['version']}}/bin/kafka-server-start.sh
-#    - cwd: {{vars['home']}}
-#    - require:
-#      - cmd: get-kafka-pacakge
+  cmd.run:
+    - name: tar -xzf kafka-{{ vars.scala_version }}-{{ vars.version }}.tgz
+    #- creates: {{ vars.home }}/kafka-{{ vars.scala_version }}-{{ vars.version }}/bin/kafka-server-start.sh
+    - unless: test -d {{ vars.home }}/kafka_{{ vars.scala_version }}-{{ vars.version }}/bin
+    - cwd: {{ vars.home }}
+    - require:
+      - file: kafka-cluster.install-kafka-dist
