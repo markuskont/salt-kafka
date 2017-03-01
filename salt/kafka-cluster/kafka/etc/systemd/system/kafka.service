@@ -1,0 +1,15 @@
+[Unit]
+Description=Kafka broker
+After=network.target
+
+[Service]
+ExecStart={{ home }}/kafka_{{ scala }}-{{ version }}/bin/kafka-server-start.sh {{ confdir }}/kafka.conf
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+User={{ user }}
+LimitNOFILE=64000
+
+[Install]
+WantedBy=multi-user.target
+Alias=alertad.service
