@@ -1,5 +1,5 @@
 {% set vars = pillar['kafka'] %}
-{% if grains['init'] == 'upstart' %}
+
 /etc/init/kafka.conf:
   file.managed:
     - mode: 644
@@ -16,6 +16,7 @@
       - user: {{vars['user']}}
       - cmd: set-kafka-package
 
+{% if grains['init'] == 'upstart' %}
 kafka_add_init:
   cmd.run:
     - name: initctl reload-configuration
