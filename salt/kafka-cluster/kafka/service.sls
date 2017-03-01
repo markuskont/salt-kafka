@@ -1,5 +1,6 @@
 {% set vars = pillar.kafka %}
 
+# Zookeeper setup
 {% if grains.init == 'upstart' %}
   {% set zookeeper_unit_file = '/etc/init/zookeeper.conf' %}
 
@@ -53,8 +54,9 @@ zookeeper_server_add_init:
 
 {% endif %}
 
+# Kafka setup
 {% if grains.init == 'upstart' %}
-  {% set zookeeper_unit_file = '/etc/init/kafka.conf' %}
+  {% set kafka_unit_file = '/etc/init/kafka.conf' %}
 
 {{ kafka_unit_file }}:
   file.managed:
@@ -106,10 +108,21 @@ kafka_server_add_init:
 
 {% endif %}
 
-kafka-service:
+zookeeper-service:
   service.running:
-    - name: kafka
+    - name: zookeeper
     - enable: True
     - watch:
-      - file: {{ kafka_unit_file }}
-      - file: {{ vars.confdir }}/kafka.conf
+      - file: {{ vars.home }}/kafka_{{ vars.scala_version }}-{{ vars.version }}/logs
+      - file: {{ zookeeper_unit_file }}
+      - file: {{ vars.confdir }}/zookeeper.conf
+
+#kafka-service:
+#  service.running:
+#    - name: kafka
+#    - enable: True
+#    - watch:
+#      - file: {{ kafka_unit_file }}
+#      - file: {{ vars.confdir }}/kafka.conf
+#    - require:
+#      - service: zookeeper-service

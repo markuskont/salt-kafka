@@ -41,3 +41,8 @@ kafka-cluster.install-kafka-dist:
     - cwd: {{ vars.home }}
     - require:
       - file: kafka-cluster.install-kafka-dist
+
+{{ vars.home }}/kafka_{{ vars.scala_version }}-{{ vars.version }}/logs:
+  file.directory:
+    - user: {{ vars.user }}
+    - group: {{ vars.user }}
