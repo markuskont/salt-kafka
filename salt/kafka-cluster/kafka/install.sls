@@ -2,9 +2,9 @@
 
 kafka-cluster.kafka-user:
   group.present:
-    - name: kafka
+    - name: {{ vars.user }}
   user.present:
-    - name: kafka
+    - name: {{ vars.user }}
     - shell: /bin/false
     - home: {{vars.home}}
     - gid_from_name: True
@@ -13,14 +13,16 @@ kafka-cluster.kafka-user:
 
 kafka-cluster.directories:
   file.directory:
-    - user: kafka
-    - group: kafka
+    - user: {{ vars.user }}
+    - group: {{ vars.user }}
     - mode: 755
     - makedirs: True
     - names:
       - {{ vars.home }}
       - {{ vars.logdir }}
       - {{ vars.confdir }}
+      - {{ vars.zookeeper.data }}
+      - {{ vars.zookeeper.log }}
     - require:
       - user: kafka
       - group: kafka
