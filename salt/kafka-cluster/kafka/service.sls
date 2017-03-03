@@ -117,12 +117,12 @@ zookeeper-service:
       - file: {{ zookeeper_unit_file }}
       - file: {{ vars.confdir }}/zookeeper.conf
 
-#kafka-service:
-#  service.running:
-#    - name: kafka
-#    - enable: True
-#    - watch:
-#      - file: {{ kafka_unit_file }}
-#      - file: {{ vars.confdir }}/kafka.conf
-#    - require:
-#      - service: zookeeper-service
+kafka-service:
+  service.running:
+    - name: kafka
+    - enable: True
+    - watch:
+      - file: {{ kafka_unit_file }}
+      - file: {{ vars.confdir }}/kafka.conf
+    - require:
+      - service: zookeeper-service
