@@ -4,12 +4,19 @@ kafka:
   home: '/opt/kafka'
   logdir: '/srv/kafka'
   confdir: '/etc/kafka'
-  zookeeper:
-    data: '/var/lib/zookeeper'
-    log: '/var/log/zookeeper'
   scala_version: '2.11'
   version: '0.10.2.0'
   source_hash: 051e5e16050c85ebdc40f3bbbc188317
+
+zookeeper:
+  manage: true
+  user: zookeeper
+  home: /opt/zookeeper
+  logdir: /var/log/zookeeper
+  datadir: /var/lib/zookeeper
+  confdir: /etc/zookeeper
+  version: 3.4.9
+  source_hash: 3e8506075212c2d41030d874fcc9dcd2
 
 mine_functions:
   network.interfaces: []

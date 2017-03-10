@@ -1,16 +1,17 @@
 [Unit]
-Description=Kafka broker
+Description=Zookeeper node
 After=network.target
 
 [Service]
-ExecStart={{ home }}/kafka_{{ scala }}-{{ version }}/bin/kafka-server-start.sh {{ confdir }}/kafka.conf
+ExecStart={{ home }}/zookeeper-{{ version }}/bin/zkServer.sh start
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=on-failure
 User={{ user }}
 LimitNOFILE=64000
+Type=forking
 WorkingDirectory={{ logdir }}
 
 [Install]
 WantedBy=multi-user.target
-Alias=kafka.service
+Alias=zookeeper.service
