@@ -2,7 +2,7 @@
 {% set hostnames = [] %}
 
 {% for master, ips in salt['mine.get'](
-  'G@roles:kafka',
+  'G@roles:zookeeper and G@env:{{ saltenv }}',
   fun='kafka_cluster_ip_addr',
   expr_form='compound').items() %}
     {% do members.append(ips[0]) %}
@@ -17,3 +17,5 @@
   host.present:
     - ip: {{ member }}
 {% endfor %}
+
+{% set id = salt['mine.get'](grains.fqdn, 'kafka_cluster_ip_addr', expr_form='glob')[grains.fqdn][0].split('.')[3] %}

@@ -21,8 +21,6 @@ kafka-cluster.directories:
       - {{ vars.home }}
       - {{ vars.logdir }}
       - {{ vars.confdir }}
-      - {{ vars.zookeeper.data }}
-      - {{ vars.zookeeper.log }}
     - require:
       - user: kafka
       - group: kafka
@@ -34,11 +32,11 @@ kafka-cluster.install-kafka-dist:
     - source_hash: md5={{ vars.source_hash }}
     - require:
       - file: {{ vars.home }}
-  cmd.run:
-    - name: tar -xzf kafka-{{ vars.scala_version }}-{{ vars.version }}.tgz
-    #- creates: {{ vars.home }}/kafka-{{ vars.scala_version }}-{{ vars.version }}/bin/kafka-server-start.sh
-    - unless: test -d {{ vars.home }}/kafka_{{ vars.scala_version }}-{{ vars.version }}/bin
-    - cwd: {{ vars.home }}
+  archive.extracted:
+    - name: {{ vars.home }}
+    - source: {{ vars.home }}/kafka-{{ vars.scala_version }}-{{ vars.version }}.tgz
+    - user: {{ vars.user }}
+    - group: {{ vars.user }}
     - require:
       - file: kafka-cluster.install-kafka-dist
 
