@@ -23,11 +23,11 @@ boxes = [
     :saltmaster => false
   },
   {
-    :name       => "trusty",
+    :name       => "stretch",
     :mem        => "2048",
     :cpu        => "2",
     :ip         => "192.168.56.146",
-    :image      => 'ubuntu/trusty64',
+    :image      => 'debian/stretch64',
     :saltmaster => false
   },
   {

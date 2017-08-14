@@ -5,6 +5,8 @@
   {% set os = 'ubuntu' %}
   {% if grains['oscodename'] == 'jessie' %}
     {% set codename = 'xenial' %}
+  {% elif grains['oscodename'] == 'stretch' %}
+    {% set codename = 'xenial' %}
   {% elif grains['oscodename'] == 'wheezy' %}
     {% set codename = 'trusty' %}
   {% endif%}
