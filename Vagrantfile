@@ -7,7 +7,7 @@ SALT_VERSION = "v2016.11.2"
 
 boxes = [
   {
-    :name       => "xenial",
+    :name       => "k-xenial",
     :mem        => "2048",
     :cpu        => "2",
     :ip         => "192.168.56.144",
@@ -15,7 +15,7 @@ boxes = [
     :saltmaster => false
   },
   {
-    :name       => "jessie",
+    :name       => "k-jessie",
     :mem        => "2048",
     :cpu        => "2",
     :ip         => "192.168.56.145",
@@ -23,7 +23,7 @@ boxes = [
     :saltmaster => false
   },
   {
-    :name       => "stretch",
+    :name       => "k-stretch",
     :mem        => "2048",
     :cpu        => "2",
     :ip         => "192.168.56.146",

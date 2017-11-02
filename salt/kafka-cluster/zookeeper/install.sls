@@ -29,7 +29,7 @@ kafka-cluster.install-zk-dist:
   file.managed:
     - name: {{ vars.home }}/zk-{{ vars.version }}.tgz
     - source: http://www-eu.apache.org/dist/zookeeper/zookeeper-{{ vars.version }}/zookeeper-{{ vars.version }}.tar.gz
-    - source_hash: md5={{ vars.source_hash }}
+    - source_hash: {{ vars.hash_type }}={{ vars.source_hash }}
     - require:
       - file: {{ vars.home }}
   archive.extracted:

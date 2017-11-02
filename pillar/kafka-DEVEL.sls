@@ -7,6 +7,7 @@ kafka:
   scala_version: '2.11'
   version: '0.10.2.0'
   source_hash: 051e5e16050c85ebdc40f3bbbc188317
+  hash_type: sha1
   partitions: 3
   replication: 3
 
@@ -17,8 +18,9 @@ zookeeper:
   logdir: /var/log/zookeeper
   datadir: /var/lib/zookeeper
   confdir: /etc/zookeeper
-  version: 3.4.9
-  source_hash: 3e8506075212c2d41030d874fcc9dcd2
+  version: 3.4.10
+  source_hash: eb2145498c5f7a0d23650d3e0102318363206fba
+  hash_type: sha1
 
 mine_functions:
   network.interfaces: []
