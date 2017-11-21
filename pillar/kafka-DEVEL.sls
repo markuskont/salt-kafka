@@ -5,8 +5,8 @@ kafka:
   logdir: '/srv/kafka'
   confdir: '/etc/kafka'
   scala_version: '2.11'
-  version: '0.10.2.0'
-  source_hash: 051e5e16050c85ebdc40f3bbbc188317
+  version: '1.0.0'
+  source_hash: 04A88D7B9830E99841A13EC97809E58D0691D185
   hash_type: sha1
   partitions: 3
   replication: 3

@@ -29,7 +29,7 @@ kafka-cluster.install-kafka-dist:
   file.managed:
     - name: {{vars.home}}/kafka-{{ vars.scala_version }}-{{ vars.version }}.tgz
     - source: http://www-us.apache.org/dist/kafka/{{ vars.version }}/kafka_{{ vars.scala_version }}-{{ vars.version }}.tgz
-    - source_hash: md5={{ vars.source_hash }}
+    - source_hash: {{ vars.hash_type }}={{ vars.source_hash }}
     - require:
       - file: {{ vars.home }}
   archive.extracted:
